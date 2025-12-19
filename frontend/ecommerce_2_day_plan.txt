@@ -1,0 +1,116 @@
+E-COMMERCE WEB APP - 2 DAY PLAN
+
+Project tech stack: React (JS), Node.js, Express, MongoDB
+
+Overview
+- Goal: Build a minimal but production-minded e-commerce app in 2 days. Deliver a working frontend and backend with product listing, cart, checkout (mock or Stripe), user auth, and order storage in MongoDB.
+
+Day 1 — Foundation & Core APIs
+
+Morning (3.5 - 4 hrs)
+- Setup repo structure (frontend / backend). Initialize `package.json` for both.
+- Backend: create Express app, connect to MongoDB (use MongoDB Atlas or local). Add `.env` support for secrets.
+- Models with Mongoose: `User`, `Product`, `Order` (schemas minimal: product fields, user email/password hash, order items + total).
+- Implement basic auth: register/login endpoints using `bcrypt` + `jsonwebtoken` (JWT).
+
+Acceptance after morning:
+- Backend runs and connects to DB. Endpoints: `POST /api/auth/register`, `POST /api/auth/login` return JWT.
+
+Afternoon (3.5 - 4 hrs)
+- Backend: product endpoints: `GET /api/products` (list + pagination), `GET /api/products/:id`, `POST /api/products` (admin), `PUT`, `DELETE` (admin). Implement simple validation.
+- Cart flow: no server cart required yet — implement cart client-side and order creation endpoint `POST /api/orders` (require auth) that saves order to DB.
+- Integrate file upload (images): either accept image URLs or quick `multer` local upload; note production should use Cloudinary/S3.
+
+Evening (1.5 - 2 hrs)
+- Frontend: scaffold React app (Vite or CRA). Add routing with `react-router-dom`, global state via Context or Redux (Cart + Auth).
+- Implement product listing page and product detail page. Add product card, add-to-cart button.
+- Hook login/register forms to backend auth endpoints.
+
+Acceptance after Day 1:
+- User can register/login, view product list/details, add items to client-side cart, and place order which creates an `Order` in DB.
+
+Day 2 — Finish UX, Checkout, Admin, Deploy
+
+Morning (3.5 - 4 hrs)
+- Frontend: Cart page, Checkout page (collect shipping info). Integrate with a payments flow:
+  - Quick option: mock payment (accept card info client-side and call `POST /api/orders` with `paid: true` for demo).
+  - Recommended: integrate Stripe Checkout/Stripe Elements (requires Stripe keys).
+- Backend: order confirmation endpoint, send email (use `nodemailer` with stub or ethereal for dev).
+- Add order history endpoint `GET /api/orders/user`.
+
+Afternoon (3.5 - 4 hrs)
+- Admin pages: simple admin dashboard to create/edit products and view orders. Protect admin routes with a role flag on `User`.
+- Polish UI: responsive layout, input validation, loading / error states.
+- Testing: basic manual test plan (register, login, add to cart, checkout), and add a couple of automated tests (Jest for backend endpoints).
+
+Evening (1.5 - 2 hrs)
+- Deployment: deploy frontend to Vercel/Netlify, backend to Render/Heroku/AWS/Cloud Run, and MongoDB to Atlas.
+- Create `.env.example`, add `/.vite/` and `node_modules/` to `.gitignore`, write short README with run instructions.
+
+Acceptance after Day 2:
+- End-to-end flow works in deployed demo (or locally): register, login, browse, add to cart, checkout, see order saved in DB and admin can view orders.
+
+Minimum Viable Feature List (MVP)
+- User auth: register/login (JWT)
+- Product catalog: list, details, admin CRUD
+- Cart: add/remove/update client-side
+- Checkout: create order + mark as paid (mock/Stripe)
+- Order storage and user order history
+- Admin view for orders and product management
+
+Optional (if time permits)
+- Image uploads to Cloudinary/S3
+- Search, filters, and pagination on products
+- Inventory management & stock decrement on order
+- Email confirmations (real SMTP) and order PDFs
+- CI/CD via GitHub Actions
+
+Tools & Technologies (real-world recommendations)
+- Frontend
+  - React (Vite) + `react-router-dom`
+  - State: Context API or Redux / Redux Toolkit
+  - HTTP: `axios` or `fetch`
+  - Forms: `react-hook-form` or Formik
+  - Styling: Tailwind CSS / CSS modules / Chakra UI / Material UI
+  - Build & deploy: Vercel or Netlify
+
+- Backend
+  - Node.js + Express
+  - MongoDB (Atlas) + Mongoose
+  - Auth: `bcrypt`, `jsonwebtoken` (JWT)
+  - File uploads: `multer` or Cloudinary SDK
+  - Payments: Stripe (Checkout or Elements)
+  - Emails: `nodemailer` (ethereal for dev)
+  - Logging/Monitoring: `winston`, Sentry (optional)
+  - Process manager: `pm2` (for self-hosted servers)
+
+- Dev / Infra / Tooling
+  - Git + GitHub (or GitLab)
+  - CI/CD: GitHub Actions
+  - Testing: Jest + Supertest (backend), React Testing Library (frontend)
+  - Linting & formatting: ESLint, Prettier
+  - Postman / Insomnia for API debugging
+  - Docker (optional) for reproducible dev and deployment
+  - MongoDB Atlas for hosted DB, Redis for caching/session if needed
+  - TLS/HTTPS & environment management for production
+
+Prerequisites & Setup Notes
+- Local dev: Node 18+, npm or pnpm, MongoDB Atlas or local mongod
+- Create a `frontend/.env` and `backend/.env` for keys (JWT_SECRET, MONGO_URI, STRIPE keys)
+
+Quick run commands (dev)
+ - Backend: `cd backend && npm install && npm run dev`
+ - Frontend: `cd frontend && npm install && npm run dev`
+
+Deliverables to produce by end of Day 2
+- A running frontend and backend (locally or deployed)
+- `README.md` with setup and deploy instructions
+- `.env.example` and instructions for secrets
+- Minimal test coverage and a basic manual test checklist
+
+Notes on scope and risk
+- Two days is aggressive: prioritize the MVP list and mock third-party integrations (payments, image upload) if time-constrained.
+- Keep endpoints and UI minimal and well-tested for the core purchase flow; polish can be added after the demo.
+
+---
+End of plan
