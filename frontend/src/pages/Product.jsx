@@ -6,7 +6,7 @@ import RelatedProducts from "../components/RelatedProducts";
 
 const Product = () => {
   const { productId } = useParams();
-  const { products, currency } = useContext(ShopContext);
+  const { products, currency,addToCart } = useContext(ShopContext);
   const [productData, setProductData] = useState(false); //false acts like placeholder telling react i had nothing right now to render
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
@@ -78,7 +78,7 @@ const Product = () => {
               ))}
             </div>
           </div>
-          <button className="py-3 px-8 bg-orange-500 text-white text-sm active:bg-gray-700 hover:bg-orange-600 hover:rounded-lg transition-all">ADD TO CART
+          <button onClick={()=> addToCart(productData._id, size)} className="py-3 px-8 bg-orange-500 text-white text-sm active:bg-gray-700 hover:bg-orange-600 hover:rounded-lg transition-all">ADD TO CART
           </button>
             <hr className="mt-8 sm:w-4/5" />
             <div className="tex-sm text-gray-500 mt-5 flex flex-col gap-1">
