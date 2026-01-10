@@ -12,10 +12,19 @@ import Collection from './pages/Collection'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Searchbar from './components/Searchbar'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
     <div className='px-4 md:px-[6vw] sm:px-[4vw]'>
+       <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        closeOnClick
+        draggable
+        theme="light"
+      />
 
       <Navbar/>
       <Searchbar/>
