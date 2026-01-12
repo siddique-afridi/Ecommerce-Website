@@ -1,6 +1,7 @@
 import { createContext, useState,useEffect } from 'react'
 import { products } from '../assets/assets';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 export const ShopContext = createContext();
 
@@ -10,6 +11,7 @@ const ShopContextProvider = (props) => {
      const [search, setSearch]= useState('');
      const [showSearch, setShowSearch] = useState(false);
      const [cartItems, setCartItems] = useState({});
+     const navigate = useNavigate()
 
 
      const addToCart = async(itemId, size)=> {
@@ -21,20 +23,20 @@ const ShopContextProvider = (props) => {
         let cartData = structuredClone(cartItems);
 
         if(cartData[itemId]){
-            if(cartData[itemId][size]){
-                cartData[itemId][size] +=1;
-
-            }else{
+            if(cartData[itemId][size]){       //it(line24) looks for the unique key(M:"", L:"", S:"")inside item(i.e itemId represents item)
+                cartData[itemId][size] +=1;     //if there is M only and user selected M again then no new key is created instead M is 
+                                                //incremented due to line 25 code.Inversely, if user selects L then new key is created
+            }else{                              // and else(line 27 code) is executed and the new key is assigned a value of 1.
                 cartData[itemId][size]= 1;
             }
         }
         else{
-            cartData[itemId] = {};
-            cartData[itemId][size] = 1;
-        }
-        setCartItems(cartData)
+            cartData[itemId] = {};              //on very first addition else is executed(line31 code) due to which a key is created with 
+            cartData[itemId][size] = 1;        //the value as empty object for the added product as its productId/itemId 
+        }                                     //then due to (line33 code) inside that empty object a new key is created with the value 1.
+        setCartItems(cartData)                                //On further additions if(line 23 code) executed and checks the values
         
-        // console.log(Object.keys.cartData)
+        
     }
 
     const getCartCount = ()=> {
@@ -61,6 +63,23 @@ const ShopContextProvider = (props) => {
 
     }
 
+    const getCartAmount = ()=> {
+        let totalAmount = 0;
+        for(const items in cartItems){
+            let itemInfo = products.find((product)=> product._id === items);
+            for (const item in cartItems[items]){
+                try{
+                    if(cartItems[items][item] >0){
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    }
+                }catch(error){
+
+                }
+            }
+        }
+        return totalAmount
+    }
+
 
     
     useEffect(()=>{
@@ -71,7 +90,7 @@ const ShopContextProvider = (props) => {
     const value = {
         products,currency,delivery_fee,
         search,setSearch,showSearch,setShowSearch,
-        cartItems,addToCart,getCartCount,updateQuantity
+        cartItems,addToCart,getCartCount,updateQuantity,getCartAmount,navigate
 
     }
 
