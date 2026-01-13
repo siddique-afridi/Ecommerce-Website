@@ -9,6 +9,12 @@
     font-family: Outfit;
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .prata-regular {
   font-family: "Prata", serif;
   font-weight: 400;
