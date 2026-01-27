@@ -1,13 +1,15 @@
 import React, {useEffect} from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
-import NewsLetterBox from '../components/NewsletterBox'
+import { useMeta } from '../hooks/useMeta'
 import NewsletterBox from '../components/NewsletterBox'
 
 const About = () => {
-   useEffect(() => {
-    document.title = "About Us | Sphere E-Commerce Store";
-  }, []);
+   useMeta({
+    title: "About Us | Sphere E-Commerce Store",
+    description: "Learn about Sphere E-Commerce Store, our mission, story, and the team behind our success.",
+    keywords: "about, Sphere E-Commerce Store, story, mission, team"
+  });
 
   return (
     <div>

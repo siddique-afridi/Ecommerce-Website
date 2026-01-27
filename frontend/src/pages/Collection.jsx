@@ -3,6 +3,7 @@ import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from "../components/Title";
 import ProductItem from "../components/ProductItem";
+import { useMeta } from '../hooks/useMeta'
 
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
@@ -12,9 +13,11 @@ const Collection = () => {
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState('relevant')
 
-   useEffect(() => {
-    document.title = "All Products | Sphere E-Commerce Store";
-  }, []);
+   useMeta({
+    title: "Collection | Sphere E-Commerce Store",
+    description: "Browse our amazing collection of products at YourBrand.",
+    keywords: "products, collection, shopping, YourBrand"
+  });
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {

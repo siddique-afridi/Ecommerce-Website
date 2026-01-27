@@ -3,13 +3,15 @@ import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsletterBox from '../components/NewsletterBox'
 import { ShopContext } from '../context/ShopContext'
+import { useMeta } from '../hooks/useMeta'
 
 const Contact = () => {
   const {navigate} = useContext(ShopContext)
-
-   useEffect(() => {
-    document.title = "Contact Us | Sphere E-Commerce Store";
-  }, []);
+ useMeta({
+    title: "Contact | Sphere E-Commerce Store",
+    description: "Get in touch with Sphere E-Commerce Store for support, inquiries, or partnership opportunities.",
+    keywords: "contact, Sphere E-Commerce Store, support, inquiries, partnership"
+  });
 
   return (
     <div>

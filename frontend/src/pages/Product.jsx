@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import RelatedProducts from "../components/RelatedProducts";
+import { useMeta } from '../hooks/useMeta'
 
 const Product = () => {
   const { productId } = useParams();
@@ -11,9 +12,11 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
-  useEffect(()=> {
-    document.title = "Product Details | Sphere E-Commerce Store"
-  },[])
+ useMeta({
+    title: "Product Details | Sphere E-Commerce Store",
+    description: "Check out the detailed information about this product on Sphere E-Commerce Store.",
+    keywords: "product details, Sphere E-Commerce Store, online shopping, e-commerce"
+  });
 
   const fetchProductData = async () => {
     products.map((item) => {

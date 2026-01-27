@@ -3,14 +3,17 @@ import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import CartTotal from "../components/CartTotal";
+import { useMeta } from '../hooks/useMeta'
 
 const Cart = () => {
   const { products, currency, cartItems,updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
-
-   useEffect(() => {
-    document.title = "Cart | Sphere E-Commerce Store";
-  }, []);
+  // custom hook for meta tags
+  useMeta({
+    title: "Cart | Sphere E-Commerce Store",
+    description: "Review the products in your cart before completing your order at Sphere E-Commerce Store.",
+    keywords: "cart, shopping, Sphere E-Commerce Store, checkout, products"
+  });
 
   useEffect(() => {
     const tempData = [];
