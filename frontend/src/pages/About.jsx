@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsLetterBox from '../components/NewsletterBox'
 import NewsletterBox from '../components/NewsletterBox'
 
 const About = () => {
+   useEffect(() => {
+    document.title = "About Us | Sphere E-Commerce Store";
+  }, []);
+
   return (
     <div>
       <div className='text-center text-2xl pt-8 border-t'>

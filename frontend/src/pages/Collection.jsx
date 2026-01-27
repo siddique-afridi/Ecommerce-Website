@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState,useEffect } from "react";
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from "../components/Title";
-import { useEffect } from "react";
 import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
@@ -12,6 +11,10 @@ const Collection = () => {
   const [category, setCategory] = useState([]);
   const [subCategory, setSubCategory] = useState([]);
   const [sortType, setSortType] = useState('relevant')
+
+   useEffect(() => {
+    document.title = "All Products | Sphere E-Commerce Store";
+  }, []);
 
   const toggleCategory = (e) => {
     if (category.includes(e.target.value)) {

@@ -11,6 +11,10 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size, setSize] = useState("");
 
+  useEffect(()=> {
+    document.title = "Product Details | Sphere E-Commerce Store"
+  },[])
+
   const fetchProductData = async () => {
     products.map((item) => {
       if (item._id === productId) {

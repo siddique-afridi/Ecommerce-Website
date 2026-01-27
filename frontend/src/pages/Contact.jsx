@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext,useEffect } from 'react'
 import Title from '../components/Title'
 import { assets } from '../assets/assets'
 import NewsletterBox from '../components/NewsletterBox'
@@ -6,6 +6,10 @@ import { ShopContext } from '../context/ShopContext'
 
 const Contact = () => {
   const {navigate} = useContext(ShopContext)
+
+   useEffect(() => {
+    document.title = "Contact Us | Sphere E-Commerce Store";
+  }, []);
 
   return (
     <div>
