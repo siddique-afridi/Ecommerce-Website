@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ecommerce-website-rj8z.vercel.app/siteMap.xml
