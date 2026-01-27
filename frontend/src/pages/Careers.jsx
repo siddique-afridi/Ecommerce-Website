@@ -8,7 +8,7 @@ const Careers = () => {
       style={{ backgroundImage: `url(${underWay})` }}
       className="h-[650px] bg-cover relative flex bg-[position:50%_90%] items-center justify-center py-10 "
     >
-    {/* MAIN SHINY TEXT */}
+    {/* MAIN TEXT */}
       <h1 className="relative z-10 text-8xl font-semibold font-serif text-transparent
         bg-gradient-to-r from-black via-slate-500 to-gray-400
         bg-200% bg-clip-text animate-shimmer">
