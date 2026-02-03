@@ -14,9 +14,12 @@ import Footer from './components/Footer'
 import Searchbar from './components/Searchbar'
 import { ToastContainer } from 'react-toastify'
 import Careers from './pages/Careers'
+import MaintenanceUpdates from './components/MaintenanceUpdates'
 
 const App = () => {
   return (
+    <>
+      <MaintenanceUpdates/>
     <div className='px-4 md:px-[6vw] sm:px-[4vw]'>
        <ToastContainer
         position="top-right"
@@ -26,7 +29,6 @@ const App = () => {
         draggable
         theme="light"
       />
-
       <Navbar/>
       <Searchbar/>
 
@@ -46,6 +48,7 @@ const App = () => {
       <Footer/>
 
     </div>
+    </>
   )
 }
 

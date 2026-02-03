@@ -30,6 +30,7 @@ const Cart = () => {
     }
 
     setCartData(tempData);
+    console.log(cartData)
   }, [cartItems]);
 
   return (
@@ -40,8 +41,7 @@ const Cart = () => {
 
       <div>
         {cartData.map((item, i) => {
-          const productData = products.find(
-            (product) => product._id === item._id
+          const productData = products.find((product) => product._id === item._id
           );
           return (
             <div

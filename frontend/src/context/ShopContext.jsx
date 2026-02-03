@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const ShopContext = createContext();
 
-const ShopContextProvider = (props) => {
+const ShopContextProvider = ({children}) => {
      const currency = "$";
      const delivery_fee = 10;
      const [search, setSearch]= useState('');
@@ -26,7 +26,7 @@ const ShopContextProvider = (props) => {
             if(cartData[itemId][size]){       //it(line24) looks for the unique key(M:"", L:"", S:"")inside item(i.e itemId represents item)
                 cartData[itemId][size] +=1;     //if there is M only and user selected M again then no new key is created instead M is 
                                                 //incremented due to line 25 code.Inversely, if user selects L then new key is created
-            }else{                              // and else(line 27 code) is executed and the new key is assigned a value of 1.
+            }else{                              // and else(line 30 code) is executed and the new key is assigned a value of 1.
                 cartData[itemId][size]= 1;
             }
         }
@@ -34,7 +34,8 @@ const ShopContextProvider = (props) => {
             cartData[itemId] = {};              //on very first addition else is executed(line31 code) due to which a key is created with 
             cartData[itemId][size] = 1;        //the value as empty object for the added product as its productId/itemId 
         }                                     //then due to (line33 code) inside that empty object a new key is created with the value 1.
-        setCartItems(cartData)                                //On further additions if(line 23 code) executed and checks the values
+        setCartItems(cartData)    
+        console.log(cartItems)                            //On further additions if(line 23 code) executed and checks the values
         
         
     }
@@ -58,9 +59,9 @@ const ShopContextProvider = (props) => {
 
     const updateQuantity = async(itemId,size,quantity)=>{
         let cartData = structuredClone(cartItems);
-        cartData[itemId][size] = quantity;
-        setCartItems(cartData);
-
+        cartData[itemId][size] = quantity;    //cartData aik object hai jisky andar products hai, usky andar jao productId/itemId key milegi
+        setCartItems(cartData);               // uss key k andar jao size key milegi uski value ko = quantity kardo; aur quantity hamy
+                                             //cart page par input se milti hai... uss input par ham ne yeh function call kia hai
     }
 
     const getCartAmount = ()=> {
@@ -81,12 +82,6 @@ const ShopContextProvider = (props) => {
     }
 
 
-    
-    useEffect(()=>{
-        console.log(cartItems)
-     },[cartItems])
-
-
     const value = {
         products,currency,delivery_fee,
         search,setSearch,showSearch,setShowSearch,
@@ -96,7 +91,7 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value = {value}>
-            {props.children}
+            {children}
         </ShopContext.Provider>
     )
 }
