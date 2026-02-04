@@ -2,6 +2,8 @@ import React from "react";
 import { assets } from "../assets/assets";
 
 const Footer = () => {
+  const year = new Date().getFullYear();
+
   return (
     <div>
       <div className="flex flex-col sm:grid grid-cols-[3fr_1fr_1fr] gap-14 my-10 mt-40 text-sm">
@@ -38,7 +40,7 @@ const Footer = () => {
           Copyright {new Date().getFullYear()}</p> */}
 
         <p className="py-5 text-sm text-center">
-          Copyright 2025 @ myCompany.com - All Right Reserved.
+          Copyright {year} @ Sphere-Ecommerce.com - All Right Reserved.
         </p>
       </div>
     </div>

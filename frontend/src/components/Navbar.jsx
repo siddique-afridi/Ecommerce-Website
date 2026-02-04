@@ -8,7 +8,7 @@ const Navbar = () => {
   const{setShowSearch,getCartCount} = useContext(ShopContext)
 
   return (
-    <div className="flex items-center justify-between py-5 font-medium sticky top-0 z-10 bg-slate-50">
+    <div className="flex items-center justify-between py-5 font-medium sticky top-0 z-10 bg-white">
       <Link to={'/'}>
       <img src={assets.logo} alt="" className="w-32" />
       </Link>

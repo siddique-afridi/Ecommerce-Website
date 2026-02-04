@@ -19,7 +19,9 @@ const Home = () => {
       <LatestCollection/>
       <BestSeller/>
       <OurPolicy/>
-      <NewsletterBox/>
+      <div className="-mx-4 sm:-mx-[4vw] md:-mx-[6vw]">
+        <NewsletterBox />
+      </div>
     </div>
   )
 }
