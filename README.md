@@ -110,8 +110,8 @@ This project follows a **Client-Server Architecture** with clear separation of c
 
 ### Clone the Repository
 ```bash
-git clone <repository-url>
-cd e-Commerce\ storefront
+git clone https://github.com/siddique-afridi/Ecommerce-Website.git
+cd e-Commerce storefront
 ```
 
 ## Project Structure
@@ -143,8 +143,3 @@ e-Commerce storefront/
 ├── vercel.json              # Vercel deployment config
 └── README.md
 ```
-
----
-
-**Last Updated**: February 2026  
-**Version**: 1.0.0
