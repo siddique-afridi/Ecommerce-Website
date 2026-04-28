@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/dbConfig.js";
 import connectCloudinary from "./config/cloudinary.js";
+import userRouter from "./routes/userRoute.js";
 
 
 //App config
@@ -17,6 +18,7 @@ app.use(express.json())
 app.use(cors())
 
 //api endpoints
+app.use('/api/user', userRouter)
 
 app.get('/', (req,res)=> {
     const h = new Date().getHours();
