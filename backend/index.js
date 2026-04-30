@@ -5,6 +5,7 @@ import connectDB from "./config/dbConfig.js";
 import connectCloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
+import logger from "./middlewares/apiLogger.js"
 
 
 //App config
@@ -17,6 +18,7 @@ connectCloudinary();
 //middleware
 app.use(express.json())
 app.use(cors())
+app.use(logger)
 
 //api endpoints
 app.use('/api/user', userRouter)
