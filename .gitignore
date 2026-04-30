@@ -1,2 +1,20 @@
 ecommerce_2_day_plan.txt
 ci-issue.txt
+.env
+
+
+# logs
+npm-debug.log*
+
+
+# Vite cache
+.vite/
+
+
+# IDE files
+.vscode/
+.idea/
+
+# build output
+dist/
+dist-ssr/
