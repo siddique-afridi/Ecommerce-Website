@@ -33,16 +33,10 @@ const addProduct = async(req,res)=> {
             date: Date.now()
         }
 
-        console.log(productData);
-
         const product = new productModel(productData);
         await product.save();
 
         res.json({success:true, message: "Product Added"})
-
-
-        console.log(name, description, price, category,subCategory,sizes, bestSeller)
-        console.log(imagesUrl)
 
     }catch(error){
         res.status(400).json({success:false, message:error.message})
@@ -53,6 +47,14 @@ const addProduct = async(req,res)=> {
 
 
 const listProducts = async(req,res)=> {
+    try{
+        const products = await productModel.find();
+
+        res.json({success:true, message: "products list", products})
+
+    }catch(error){
+        res.status(400).json({success:false, message:error.message})
+    }
     
 }
 
