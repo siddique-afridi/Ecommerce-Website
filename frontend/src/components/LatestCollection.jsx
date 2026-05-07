@@ -11,8 +11,8 @@ const LatestCollection = () => {
     useEffect(()=>{
         const men = products.filter((item)=> item.category==='Men').slice(0,20)
 
-            setLatestProducts(men.slice(10,20))
-    },[])
+            setLatestProducts(men.slice(0,20))
+    },[products])
 
   return (
     <div className='my-10'>
