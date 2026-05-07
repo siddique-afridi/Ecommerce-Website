@@ -15,8 +15,24 @@ import Searchbar from './components/Searchbar'
 import { ToastContainer } from 'react-toastify'
 import Careers from './pages/Careers'
 import MaintenanceUpdates from './components/MaintenanceUpdates'
+import { useEffect } from 'react'
 
 const App = () => {
+   useEffect(() => {
+    if (window.onekoLoaded) return;
+
+    const script = document.createElement("script");
+    script.src = "/oneko.js";
+    script.async = true;
+
+    document.body.appendChild(script);
+    window.onekoLoaded = true;
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
       <MaintenanceUpdates/>
