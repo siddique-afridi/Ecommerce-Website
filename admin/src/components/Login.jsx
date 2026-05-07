@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from 'axios';
 import { backendUrl } from "../App";
+import { toast } from "react-toastify";
 
 const Login = ({setToken}) => {
 
@@ -8,6 +9,7 @@ const Login = ({setToken}) => {
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = async(e) => {
+    console.log("i am submitted")
     try {
       e.preventDefault();
 
@@ -20,7 +22,7 @@ const Login = ({setToken}) => {
       }else{
         toast.error(res.data.message)
       }
-      
+      toast.success("Login Successful")
 
     } catch (error) {
         console.log(error);
