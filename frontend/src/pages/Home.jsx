@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import Hero from '../components/Hero'
 import LatestCollection from '../components/LatestCollection'
 import BestSeller from '../components/BestSeller'
@@ -8,6 +8,7 @@ import { useMeta } from '../hooks/useMeta'
 
 
 const Home = () => {
+
   useMeta({
     title: "Home | Sphere E-Commerce Store",
     description: "Welcome to Sphere E-Commerce Store, your go-to destination for amazing products online.",

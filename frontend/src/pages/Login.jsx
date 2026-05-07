@@ -1,10 +1,19 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { ShopContext } from '../context/ShopContext';
 
 const Login = () => {
-  const [currentState, setCurrentState] = useState('Sign Up')
+  const [currentState, setCurrentState] = useState('Sign Up');
+  const {token,setToken,navigate,backendUrl} = useContext(ShopContext);
 
   const onSubmitHandler=async(e)=> {
     e.preventDefault();
+    try{
+      
+
+    }catch(error){
+
+    }
+
   }
 
   return (
