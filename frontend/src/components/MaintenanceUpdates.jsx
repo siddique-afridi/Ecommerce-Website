@@ -10,7 +10,7 @@ const MaintenanceUpdates = () => {
     <div className="w-full flex justify-end py-2 rounded-ful bg-gradient-to-r from-yellow-50 via-black to-yellow-50">
      
       <div className="absolute left-[530px] -top-0.5">
-        <button onClick={()=> setIsOpen(!isOpen)} className="px-3 bg-gradient-to-r from-black/50 via-green-300 to-black py-3">Show Progress</button>
+        <button onClick={()=> setIsOpen(!isOpen)} className="px-3 bg-gradient-to-r max-2xl:hidden from-black/50 via-green-300 to-black py-3">Show Progress</button>
       </div>
       <div className="flex items-center w-1/2 gap-4 mr-20 ">
         <p className="text-xl text-green-500 font-semibold animate-pulse">
