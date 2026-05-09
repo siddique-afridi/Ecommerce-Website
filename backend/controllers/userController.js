@@ -23,7 +23,7 @@ const loginUser = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password);
         if(isMatch){
             const token = createToken(user._id)
-            res.json({success:true, token})
+            res.json({success:true, token, message:"logged in"})
 
         }else{
             res.json({success:false, message: "Invalid credentials"})
@@ -43,7 +43,7 @@ const loginUser = async (req, res) => {
 // register controller
 const registerUser = async (req, res) => {
   try {
-    const { name, email, password:abcdefg } = req.body;
+    const { name, email, password } = req.body;
 
     const exists = await userModel.findOne({ email });
     if (exists) {
@@ -69,7 +69,7 @@ console.log(hashedPassword)
     const user = await newUser.save();
 
     const token = createToken(user._id);
-    res.json({success:true, token})
+    res.json({success:true, token, message:"registered successfully"})
 
   } catch (error) {
     console.log(error);
