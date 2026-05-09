@@ -16,6 +16,7 @@ const ShopContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [token, setToken] = useState('')
 
+
   const addToCart = async (itemId, size) => {
     if (!size) {
       toast.error("Select Product Size");
@@ -25,21 +26,34 @@ const ShopContextProvider = ({ children }) => {
     let cartData = structuredClone(cartItems);
 
     if (cartData[itemId]) {
-      if (cartData[itemId][size]) {
-        //it(line24) looks for the unique key(M:"", L:"", S:"")inside item(i.e itemId represents item)
-        cartData[itemId][size] += 1; //if there is M only and user selected M again then no new key is created instead M is
-        //incremented due to line 25 code.Inversely, if user selects L then new key is created
+      if(cartData[itemId][size]) {
+       
+        cartData[itemId][size] += 1; 
       } else {
-        // and else(line 30 code) is executed and the new key is assigned a value of 1.
         cartData[itemId][size] = 1;
       }
     } else {
-      cartData[itemId] = {}; //on very first addition else is executed(line31 code) due to which a key is created with
-      cartData[itemId][size] = 1; //the value as empty object for the added product as its productId/itemId
-    } //then due to (line33 code) inside that empty object a new key is created with the value 1.
+      cartData[itemId] = {}; 
+      cartData[itemId][size] = 1; 
+    }
     setCartItems(cartData);
-    console.log(cartItems); //On further additions if(line 23 code) executed and checks the values
+
+    if(token){
+      try{
+        await axios.post(backendUrl + 
+          '/api/cart/add',
+          {itemId, size},
+          {headers:{token}}
+        )
+
+      }catch(error){
+               console.log(error)
+               toast.error(error.message)
+      }
+    }
+
   };
+
 
   const getCartCount = () => {
     let totalCount = 0;
@@ -57,9 +71,23 @@ const ShopContextProvider = ({ children }) => {
 
   const updateQuantity = async (itemId, size, quantity) => {
     let cartData = structuredClone(cartItems);
-    cartData[itemId][size] = quantity; //cartData aik object hai jisky andar products hai, usky andar jao productId/itemId key milegi
-    setCartItems(cartData); // uss key k andar jao size key milegi uski value ko = quantity kardo; aur quantity hamy
-    //cart page par input se milti hai... uss input par ham ne yeh function call kia hai
+    cartData[itemId][size] = quantity; 
+    setCartItems(cartData); 
+
+    if(token){
+      try{
+        await axios.post(backendUrl + 
+          '/api/cart/update',
+          {itemId, size,quantity},
+          {headers:{token}}
+        )
+
+      }catch(error){
+                  console.log(error)
+               toast.error(error.message)
+      }
+    }
+    
   };
 
   const getCartAmount = () => {
@@ -96,6 +124,24 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
+  const getUserCart = async(token)=> {
+    try{
+      const res = await axios.post(backendUrl + 
+          '/api/cart/get',
+          {},
+          {headers:{token}}
+      )
+      if(res.data.success){
+        setCartItems(res.data.cartData)
+      }
+      
+    }catch(error){
+ console.log(error);
+      toast.error(error.message)
+    }
+
+  }
+
   useEffect(() => {
     getProductsData()
     
@@ -105,6 +151,7 @@ const ShopContextProvider = ({ children }) => {
   useEffect(() => {
     if(!token && localStorage.getItem('token')){
       setToken(localStorage.getItem('token'))
+      getUserCart(localStorage.getItem('token'));
 
     }
     
