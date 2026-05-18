@@ -1,7 +1,8 @@
 import express from 'express'
-import { placeOrder,placeOrderRazorpay,placeOrderStripe,userOrders,allOrders,updateStatus, verifyStripe } from '../controllers/orderController.js'
+import { placeOrder,placeOrderStripe,userOrders,allOrders,updateStatus } from '../controllers/orderController.js'
 import adminAuth from "../middlewares/adminAuth.js"
 import authUser from "../middlewares/auth.js"
+// import { stripeWebhook } from '../hooks/stripeWebhook.js'
 const orderRouter = express.Router();
 
 //admin features
@@ -11,12 +12,9 @@ orderRouter.post('/status', adminAuth,updateStatus);
 //payment features
 orderRouter.post('/place',authUser ,placeOrder);
 orderRouter.post('/stripe',authUser ,placeOrderStripe);
-orderRouter.post('/razorpay', placeOrderRazorpay);
 
 //user features
 orderRouter.post('/userorders', authUser, userOrders)
 
-//verify payment
-orderRouter.post('/verifyStripe', authUser, verifyStripe)
 
 export default orderRouter;

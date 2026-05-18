@@ -8,6 +8,7 @@ import productRouter from "./routes/productRoute.js";
 import logger from "./middlewares/apiLogger.js"
 import cartRouter from "./routes/cartRoutes.js";
 import orderRouter from "./routes/orderRoute.js";
+import { stripeWebhook } from "./hooks/stripeWebhook.js";
 
 //App config
 const app = express();
@@ -16,6 +17,12 @@ connectDB();
 connectCloudinary();
 
 //middleware
+//stripe webhook to verify payment
+app.post("/api/order/webhook",
+  express.raw({ type: "application/json" }),
+  stripeWebhook
+);
+
 app.use(express.json())
 app.use(cors())
 app.use(logger)
