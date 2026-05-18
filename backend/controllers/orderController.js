@@ -93,14 +93,29 @@ export const placeOrderStripe = async(req,res)=> {
     }catch(error){
          console.log(error)
         res.json({success:false,message:error.message})
-
     }
-
 }
 
+// verify stripe
+export const verifyStripe = async(req,res)=>{
+    const {orderId, success, userId} = req.body;
+     
+    try {
+        if(success==='true'){
+            await orderModel.findByIdAndUpdate(orderId, {payment:true})
+            await userModel.findByIdAndUpdate(userId, {cartData:{}})            
 
-export const placeOrderRazorpay = async(req,res)=> {
-
+            res.json({success:true });
+        }else{
+            await orderModel.findByIdAndDelete(orderId);
+            
+            res.json({success:false, message:"order deleted"})
+        }
+        
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:error.message})
+    }
 }
 
 
