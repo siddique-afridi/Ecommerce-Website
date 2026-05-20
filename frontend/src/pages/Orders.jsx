@@ -30,13 +30,11 @@ const Orders = () => {
           allOrdersItem.push(item);
 
           setOrderData(allOrdersItem.reverse())
-
         })
       })
 
       console.log(allOrdersItem)
     }
-      
 
     }catch(error){
 
@@ -47,8 +45,6 @@ const Orders = () => {
    loadOrderData()
     
   }, [token])
-  
-
 
   return (
     <div className='border-t pt-12'>
