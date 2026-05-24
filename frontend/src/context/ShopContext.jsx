@@ -110,6 +110,8 @@ const ShopContextProvider = ({ children }) => {
     try {
 
       const res = await axios.get(backendUrl + '/api/product/list');
+      console.log(backendUrl, "backendurl",{headers:{token}});
+      
       if(res.data.success){
         setProducts(res.data.products)
       }
