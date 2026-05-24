@@ -14,7 +14,7 @@ import Footer from './components/Footer'
 import Searchbar from './components/Searchbar'
 import { ToastContainer } from 'react-toastify'
 import Careers from './pages/Careers'
-import MaintenanceUpdates from './components/MaintenanceUpdates'
+// import MaintenanceUpdates from './components/MaintenanceUpdates'
 import { useEffect } from 'react'
 
 const App = () => {
@@ -35,7 +35,7 @@ const App = () => {
 
   return (
     <>
-      <MaintenanceUpdates/>
+      {/* <MaintenanceUpdates/> */}
     <div className='px-4 md:px-[6vw] sm:px-[4vw]'>
        <ToastContainer
         position="top-right"
