@@ -6,9 +6,8 @@ import userModel from "../models/userModel.js";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
 export const stripeWebhook = async (req, res) => {
+  const signature = req.headers["stripe-signature"];
 
-  const signature = req.headers["stripe-signature"]
-  
   let event;
 
   try {
@@ -45,7 +44,6 @@ export const stripeWebhook = async (req, res) => {
     await userModel.findByIdAndUpdate(userId, {
       cartData: {},
     });
-    
   }
 
   // PAYMENT FAILED

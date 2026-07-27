@@ -36,7 +36,7 @@ const App = () => {
   return (
     <>
       {/* <MaintenanceUpdates/> */}
-    <div className='px-4 md:px-[6vw] sm:px-[4vw]'>
+    <div className='bg-background text-foreground min-h-screen font-sans px-4 md:px-[6vw] sm:px-[4vw]'>
        <ToastContainer
         position="top-right"
         autoClose={2000}

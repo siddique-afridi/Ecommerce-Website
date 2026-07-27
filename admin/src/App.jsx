@@ -39,7 +39,7 @@ const App = () => {
         <Login setToken={setToken} />
       ) : (
         <>
-          <Navbar setToken={setToken} />{" "}
+          <Navbar setToken={setToken} />
           {/*pass down to logout btn in the navbar to set it empty there*/}
           <hr />
           <div className="flex w-full">
@@ -47,7 +47,7 @@ const App = () => {
 
             <div className="w-[70%] mx-auto ml-[max(5vw,25px)] my-8 text-gray-600 text-base">
               <Routes>
-                <Route path="/add" element={<Add token={token} />} />{" "}
+                <Route path="/add" element={<Add token={token} />} />
                 {/*passing down token through props to send it to server when performing these operations */}
                 <Route path="/list" element={<List token={token} />} />
                 <Route path="/orders" element={<Orders token={token} />} />
