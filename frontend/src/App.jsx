@@ -1,24 +1,24 @@
-import React from 'react'
-import { Routes,Route } from 'react-router-dom'
-import About from './pages/About'
-import Home from './pages/Home'
-import Cart from './pages/Cart'
-import Contact from './pages/Contact'
-import Login from './pages/Login'
-import Orders from './pages/Orders'
-import PlaceOrder from './pages/PlaceOrder'
-import Product from './pages/Product'
-import Collection from './pages/Collection'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Searchbar from './components/Searchbar'
-import { ToastContainer } from 'react-toastify'
-import Careers from './pages/Careers'
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
+import Login from "./pages/Login";
+import Orders from "./pages/Orders";
+import PlaceOrder from "./pages/PlaceOrder";
+import Product from "./pages/Product";
+import Collection from "./pages/Collection";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Searchbar from "./components/Searchbar";
+import { ToastContainer } from "react-toastify";
+import Careers from "./pages/Careers";
 // import MaintenanceUpdates from './components/MaintenanceUpdates'
-import { useEffect } from 'react'
+import { useEffect } from "react";
 
 const App = () => {
-   useEffect(() => {
+  useEffect(() => {
     if (window.onekoLoaded) return;
 
     const script = document.createElement("script");
@@ -36,36 +36,34 @@ const App = () => {
   return (
     <>
       {/* <MaintenanceUpdates/> */}
-    <div className='bg-background text-foreground min-h-screen font-sans px-4 md:px-[6vw] sm:px-[4vw]'>
-       <ToastContainer
-        position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
-        closeOnClick
-        draggable
-        theme="light"
-      />
-      <Navbar/>
-      <Searchbar/>
+      <div className="bg-background text-foreground min-h-screen font-sans px-4 md:px-[6vw] sm:px-[4vw]">
+        <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          closeOnClick
+          draggable
+          theme="light"
+        />
+        <Navbar />
+        <Searchbar />
 
-
-      <Routes>
-        <Route path='/' element={<Home/>} />
-        <Route path='/about' element={<About/>} />
-        <Route path='/cart' element={<Cart/>} />
-        <Route path='/contact' element={<Contact/>} />
-        <Route path='/login' element={<Login/>} />
-        <Route path='/orders' element={<Orders/>} />
-        <Route path='/place-order' element={<PlaceOrder/>} />
-        <Route path='/careers' element={<Careers/>} />
-        <Route path='/product/:productId' element={<Product/>} />
-        <Route path='/collection' element={<Collection/>} />
-      </Routes>
-      <Footer/>
-
-    </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/place-order" element={<PlaceOrder />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/product/:productId" element={<Product />} />
+          <Route path="/collection" element={<Collection />} />
+        </Routes>
+        <Footer />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

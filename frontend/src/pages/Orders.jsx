@@ -56,7 +56,7 @@ const Orders = () => {
 
   useEffect(() => {
     loadOrderData()
-  }, [token])
+  }, [token],loadOrderData)
 
   return (
     <div className='max-w-container mx-auto px-6 lg:px-10 pt-12 pb-20 font-sans border-t border-border'>
