@@ -30,45 +30,90 @@ const Login = ({setToken}) => {
     }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center w-full">
-      <div className="bg-white shadow-md rounded-lg px-8 py-6 max-w-md">
-        <h1 className="text-2xl font-bold mb-4">Admin Panel</h1>
-        <form onSubmit={onSubmitHandler}>
-          <div className="mb-3 min-w-72">
-            <p className="text-sm font-medium text-gray-700 mb-2">
+return (
+  <div className="flex min-h-screen items-center justify-center bg-background px-6">
+    <div className="w-full max-w-md">
+
+      {/* Logo / Brand */}
+      <div className="mb-8 text-center">
+        <h1 className="font-display text-5xl text-foreground">
+          Admin
+        </h1>
+
+        <p className="mt-3 text-muted">
+          Sign in to manage your store and orders.
+        </p>
+      </div>
+
+      {/* Card */}
+      <div className="rounded-3xl border border-border bg-surface p-8 shadow-card">
+
+        <div className="mb-8">
+          <h2 className="text-2xl font-semibold text-foreground">
+            Welcome Back
+          </h2>
+
+          <p className="mt-2 text-sm text-muted">
+            Enter your credentials to continue.
+          </p>
+        </div>
+
+        <form
+          onSubmit={onSubmitHandler}
+          className="space-y-6"
+        >
+
+          {/* Email */}
+          <div>
+            <label className="mb-2 block text-sm font-medium text-foreground">
               Email Address
-            </p>
+            </label>
+
             <input
-              value={email}
-              onChange={(e) => {setEmail(e.target.value)}}
-              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none"
               type="email"
-              placeholder="your@email.com"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="admin@example.com"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none transition focus:border-accent"
             />
           </div>
-          <div className="mb-3 min-w-72">
-            <p className="text-sm font-medium text-gray-700 mb-2">Password</p>
+
+          {/* Password */}
+          <div>
+            <label className="mb-2 block text-sm font-medium text-foreground">
+              Password
+            </label>
+
             <input
-              value={password}
-              onChange={(e) => {setPassword(e.target.value)}}
-              className="rounded-md w-full px-3 py-2 border border-gray-300 outline-none"
               type="password"
-              placeholder="your password"
               required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              className="w-full rounded-xl border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground outline-none transition focus:border-accent"
             />
           </div>
+
+          {/* Button */}
           <button
             type="submit"
-            className="mt-2 cursor-pointer w-full py-2 px-4 rounded-md text-white bg-black"
+            className="w-full cursor-pointer rounded-xl bg-primary py-3 font-medium text-primary-foreground transition hover:bg-primary-hover"
           >
-            Login
+            Sign In
           </button>
+
         </form>
       </div>
+
+      {/* Footer */}
+      <p className="mt-8 text-center text-sm text-muted">
+        Secure Admin Dashboard
+      </p>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default Login;

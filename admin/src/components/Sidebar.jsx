@@ -2,39 +2,61 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { assets } from "../assets/assets";
 
+const navItems = [
+  {
+    to: "/add",
+    label: "Add Product",
+    icon: assets.add_icon,
+  },
+  {
+    to: "/list",
+    label: "Products",
+    icon: assets.order_icon,
+  },
+  {
+    to: "/orders",
+    label: "Orders",
+    icon: assets.order_icon,
+  },
+];
+
 const Sidebar = () => {
   return (
-    <div className="w-[18%] min-h-screen border-r-2">
-      <div className="flex flex-col gap-4 pt-6 pl-[20%] text-[15px]">
-        <NavLink
-          className={
-            "flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          }
-          to={"/add"}
-        >
-          <img className="w-5 h-5" src={assets.add_icon} alt="" />
-          <p className="hidden md:block">Add Items</p>
-        </NavLink>
-        <NavLink
-          className={
-            "flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          }
-          to={"/list"}
-        >
-          <img className="w-5 h-5" src={assets.order_icon} alt="" />
-          <p className="hidden md:block">List Items</p>
-        </NavLink>
-        <NavLink
-          className={
-            "flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-l"
-          }
-          to={"/orders"}
-        >
-          <img className="w-5 h-5" src={assets.order_icon} alt="" />
-          <p className="hidden md:block">Orders</p>
-        </NavLink>
+    <aside className="hidden w-64 shrink-0 border-r border-border bg-surface md:block">
+      <div className="sticky top-[72px] px-6 py-8">
+        <p className="mb-6 font-mono text-[10px] uppercase tracking-mega text-muted-foreground">
+          Navigation
+        </p>
+
+        <nav className="space-y-2">
+          {navItems.map((item) => (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              className={({ isActive }) =>
+                `group flex items-center gap-3 border px-4 py-3 transition-all ${
+                  isActive
+                    ? "border-primary bg-primary text-primary-foreground shadow-card"
+                    : "border-border bg-surface text-muted hover:border-primary hover:text-primary"
+                }`
+              }
+            >
+              <img
+                src={item.icon}
+                alt=""
+                className={`h-5 w-5 ${
+                  item.to === "/add" ? "" : "opacity-80"
+                }`}
+              />
+
+              <span className="text-sm font-medium">
+                {item.label}
+              </span>
+            </NavLink>
+          ))}
+        </nav>
       </div>
-    </div>
+    </aside>
   );
 };
 

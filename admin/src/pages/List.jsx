@@ -48,38 +48,100 @@ const List = ({token}) => {
     fetchList();
   }, []);
 
-  return (
-    <>
-      <p className="mb-2">All Products List</p>
-      <div className="flex flex-col gap-2">
-        {/* List Table Title */}
+ return (
+  <div className="mx-auto w-full max-w-7xl space-y-6">
+    {/* Header */}
+    <div>
+      <h1 className="font-display text-4xl text-foreground">
+        Products
+      </h1>
+      <p className="mt-2 text-muted">
+        Manage your product catalog and inventory.
+      </p>
+    </div>
 
-        <div className="hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center px-2 py-1 border bg-gray-100 text-sm">
-          <b>Image</b>
-          <b>Name</b>
-          <b>Category</b>
-          <b>Price</b>
-          <b className="text-center">Action</b>
+    {/* Table */}
+    <div className="overflow-hidden rounded-2xl border border-border bg-surface shadow-card">
 
-        </div>
-
-        {/* Product List */}
-
-        {
-          list.map((item,idx)=> (
-               <div className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center gap-2 py-1 px-2 border text-sm" key={idx}>
-                <img className="w-12" src={item.image[0]} alt="" />
-                <p>{item.name}</p>
-                <p>{item.category}</p>
-                <p>{currency}{item.price}</p>
-                <p onClick={()=> removeProduct(item._id)} className="text-right md:text-center cursor-pointer text-lg">X</p>
-               </div>
-          ))
-        }
-
+      {/* Table Header */}
+      <div className="hidden grid-cols-[90px_2fr_1fr_1fr_80px] border-b border-border bg-background px-6 py-4 text-sm font-semibold text-muted md:grid">
+        <p>Image</p>
+        <p>Product</p>
+        <p>Category</p>
+        <p>Price</p>
+        <p className="text-center">Remove</p>
       </div>
-    </>
-  );
+
+      {/* Product Rows */}
+      {list.map((item) => (
+        <div
+          key={item._id}
+          className="grid gap-4 border-b border-border p-5 transition hover:bg-background md:grid-cols-[90px_2fr_1fr_1fr_80px] md:items-center"
+        >
+          {/* Image */}
+          <div>
+            <img
+              src={item.image[0]}
+              alt={item.name}
+              className="h-20 w-20 rounded-xl border border-border object-cover"
+            />
+          </div>
+
+          {/* Product */}
+          <div>
+            <h3 className="font-medium text-foreground">
+              {item.name}
+            </h3>
+
+            <p className="mt-1 text-sm text-muted">
+              Product
+            </p>
+          </div>
+
+          {/* Category */}
+          <div>
+            <span className="inline-flex rounded-full bg-paper-200 px-3 py-1 text-sm text-foreground">
+              {item.category}
+            </span>
+          </div>
+
+          {/* Price */}
+          <div className="font-mono text-foreground">
+            {currency}
+            {item.price}
+          </div>
+
+          {/* Delete */}
+          <button
+            onClick={() => removeProduct(item._id)}
+            className="mx-auto flex h-10 w-10 items-center justify-center rounded-full text-danger transition hover:bg-danger-subtle"
+          >
+            ✕
+          </button>
+        </div>
+      ))}
+
+      {/* Empty State */}
+      {list.length === 0 && (
+        <div className="py-20 text-center">
+          <img
+            src={assets.parcel_icon}
+            alt=""
+            className="mx-auto mb-4 w-16 opacity-40"
+          />
+
+          <h3 className="font-display text-2xl text-foreground">
+            No Products Found
+          </h3>
+
+          <p className="mt-2 text-muted">
+            Start by adding your first product.
+          </p>
+        </div>
+      )}
+    </div>
+  </div>
+);
 };
 
 export default List;
